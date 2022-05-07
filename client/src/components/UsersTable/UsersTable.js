@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,53 +6,62 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import useStyles from './styles';
 
-export default function UsersTable() {
-    const { users } = useSelector(state => state.users);
+export default function UsersTable({ setOpenDialog, setChosenUser, users }) {
+    const classes = useStyles();
+
+    const handleShowDialog = (id) => {
+        setOpenDialog(true);
+        setChosenUser(id);
+    }
 
     return (
         users.length ? 
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableContainer>
+                <Table sx={{ minWidth: 650 }}>
                     <TableHead>
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell>Imię i nazwisko</TableCell>
-                        <TableCell align="right">Email</TableCell>
-                        <TableCell align="right">Nazwa stanowiska</TableCell>
-                        <TableCell align="right">Pion / Dział</TableCell>
-                        <TableCell align="right">Jednostka organizacyjna</TableCell>
-                        <TableCell align="right">Data modyfikacji</TableCell>
-                        <TableCell align="right">Status</TableCell>
-                    </TableRow>
+                        <TableRow className={classes.tableHeadRow}>
+                            <TableCell className={classes.tableCellTh}></TableCell>
+                            <TableCell className={classes.tableCellTh}>Imię</TableCell>
+                            <TableCell className={classes.tableCellTh}>Nazwisko</TableCell>
+                            <TableCell className={classes.tableCellTh}>Wynik</TableCell>
+                            <TableCell className={classes.tableCellTh}></TableCell>
+                        </TableRow>
                     </TableHead>
                     <TableBody>
-                        {users.map(({name, email, position, department, organization, date, status}) => (
+                        {users.map(({id, firstName, lastName, evaluationAverage}) => (
                             <TableRow
-                                key={name}
+                                key={`${id}${firstName}`}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                className={classes.tableBodyRow}
                             >
-                                <TableCell>
-                                    <Checkbox />
+                                <TableCell className={classes.tableCellTd}>
+                                    <Checkbox
+                                        sx={{
+                                            color: "#d4d4d5",
+                                            transform: "scale(1.75)"
+                                        }}
+                                    />
                                 </TableCell>
-                                <TableCell>
-                                    <div style={{display: 'inline-flex'}}>
-                                        {name[0]}{name.split(' ')[1][0]}
-                                    </div>
-                                    {name}
+                                <TableCell className={classes.tableCellTd}>
+                                    {firstName}
                                 </TableCell>
-                                <TableCell>{email}</TableCell>
-                                <TableCell>{position}</TableCell>
-                                <TableCell>{department}</TableCell>
-                                <TableCell>{organization}</TableCell>
-                                <TableCell>{date}</TableCell>
-                                <TableCell>
-                                    <CheckCircleIcon />
+                                <TableCell className={classes.tableCellTd}>
+                                    {lastName}
+                                </TableCell>
+                                <TableCell className={classes.tableCellTd}>
+                                    {evaluationAverage}
+                                </TableCell>
+                                <TableCell className={classes.tableCellTd}>
+                                    <Button 
+                                        className={classes.button}
+                                        onClick={() => handleShowDialog(id)}
+                                    >Pokaż szczegóły</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -18,32 +18,38 @@ app.get('/users', (req, res) => {
         success: true,
         data: [
             {
-                name: 'Damian Bond',
-                email: 'damian@damian.pl',
-                position: 'Back-end Developer',
-                department: 'Dział IT',
-                organization: 'Ostendi Global',
-                date: '04.04.2022',
-                status: 1
+                id: 1,
+                firstName: 'Joanna',
+                lastName: 'Kalinowska',
+                evaluationAverage: 50,
+                evaluationDetails: {
+                    supervisor: 60,
+                    me: 50,
+                    coworkers: 40
+                }
             },
             {
-                name: 'Dzordz Klunej',
-                email: 'dzordz@klunej.pl',
-                position: 'Back-end Developer',
-                department: 'Dział IT',
-                organization: 'Ostendi Global',
-                date: '04.04.2022',
-                status: 1
+                id: 2,
+                firstName: 'Jan',
+                lastName: 'Janowski',
+                evaluationAverage: 30,
+                evaluationDetails: {
+                    supervisor: 30,
+                    me: 80,
+                    coworkers: 70
+                }
             },
             {
-                name: 'Iwan Karawka',
-                email: 'damian@damian.pl',
-                position: 'Back-end Developer',
-                department: 'Dział IT',
-                organization: 'Ostendi Global',
-                date: '04.04.2022',
-                status: 1
-            },
+                id: 3,
+                firstName: 'Stefan',
+                lastName: 'Stefanowski',
+                evaluationAverage: 60,
+                evaluationDetails: {
+                    supervisor: 50,
+                    me: 80,
+                    coworkers: 90
+                }
+            }
         ]
     })
 });
