@@ -16,15 +16,6 @@ import useStyles from './styles';
 
 export default function ChartsModal({openDialog, setOpenDialog, userData}) {
     const classes = useStyles();
-
-    // const data ={
-    //     evaluationDetails: {
-    //         supervisor: 60,
-    //         me: 50,
-    //         coworkers: 40,
-    //     }
-    // };
-
     const data = [
         { name: "Moja ocena", value: userData.evaluationDetails.me },
         { name: "Ocena przełożonego", value: userData.evaluationDetails.supervisor },

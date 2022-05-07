@@ -1,5 +1,6 @@
 body, div[id="root"] {
     min-height: 100vh;
     display: flex;
-    justify-content: center;;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
 }
