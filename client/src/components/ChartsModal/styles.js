@@ -31,7 +31,8 @@ export default makeStyles(() => ({
         color: '#0d50af'
     },
     dataLegend: {
-        listStyle: 'none'
+        listStyle: 'none',
+        padding: '54px 0 0'
     },
     dataLegend__item: {
         fontSize: '29px',
@@ -46,5 +47,9 @@ export default makeStyles(() => ({
     },
     closeButton: {
         color: '#1158fb'
+    },
+    modalActions: {
+        padding: '0',
+        margin: '30px 33px'
     }
 }));

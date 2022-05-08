@@ -10,8 +10,9 @@ export default function App() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" exact element={<Navigate to="/users" />} />
+				<Route path="/users/details/:id" element={<Users />} />
+				<Route path="/users/details" exact element={<Navigate to="/users" />} />
 				<Route path="/users" exact element={<Users />} />
-				<Route path="/users/details" exact element={<Users />} />
 			</Routes>
 		</BrowserRouter>
   	)

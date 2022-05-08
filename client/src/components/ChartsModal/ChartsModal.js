@@ -42,9 +42,6 @@ export default function ChartsModal({openDialog, setOpenDialog, userData}) {
                 </div>
                 <Grid container>
                     <Grid item xs={6}>
-                        <p>
-                            Legenda
-                        </p>
                         <ul className={classes.dataLegend}>
                             <li className={classes.dataLegend__item}>
                                 <div 
@@ -67,11 +64,11 @@ export default function ChartsModal({openDialog, setOpenDialog, userData}) {
                         </ul>
                     </Grid>
                     <Grid item xs={6}>
-                        <PieChart width={400} height={400}>
+                        <PieChart width={250} height={250}>
                             <Pie
                                 data={data}
-                                cx={120}
-                                cy={200}
+                                cx={150}
+                                cy={150}
                                 innerRadius={60}
                                 outerRadius={80}
                                 fill="#8884d8"
@@ -86,7 +83,7 @@ export default function ChartsModal({openDialog, setOpenDialog, userData}) {
                     </Grid>
                 </Grid>
             </DialogContent>
-            <DialogActions>
+            <DialogActions className={classes.modalActions}>
                 <Button
                     className={classes.closeButton} 
                     onClick={() => setOpenDialog(false)}

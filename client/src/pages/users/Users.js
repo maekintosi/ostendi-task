@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import Grid from '@mui/material/Grid';
 
@@ -10,15 +10,17 @@ import ChartsModal from '../../components/ChartsModal/ChartsModal';
 import { getUsers } from '../../actions/users';
 
 const Users = () => {
-    const location = useLocation();
     const dispatch = useDispatch();
-    const [ openDialog, setOpenDialog ] = useState(location.pathname === '/users/details');
-    const [ chosenUser, setChosenUser ] = useState(1);
+    const { id } = useParams();
+    const [ openDialog, setOpenDialog ] = useState(typeof id !== 'undefined' || false);
+    const [ chosenUser, setChosenUser ] = useState(id || 1);
     const { users } = useSelector(state => state.users);
+
+    console.log('here');
 
     useEffect(() => {
         dispatch(getUsers());
-    });
+    }, [dispatch]);
     
     return (
         <Grid
