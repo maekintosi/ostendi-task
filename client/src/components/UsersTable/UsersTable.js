@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,10 +16,12 @@ import useStyles from './styles';
 
 const UsersTable = ({ setOpenDialog, setChosenUser, users }) => {
     const classes = useStyles();
+    const navigate = useNavigate();
 
     const handleShowDialog = (id) => {
         setOpenDialog(true);
         setChosenUser(id);
+        navigate(`/users/details/${id}`);
     }
 
     return (
@@ -69,7 +72,7 @@ const UsersTable = ({ setOpenDialog, setChosenUser, users }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-        : <>{'Wczytywanie danych'} <CircularProgress /></>
+        : <CircularProgress />
     )
 }
 

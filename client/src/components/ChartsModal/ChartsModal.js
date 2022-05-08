@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import _ from 'underscore';
 
 import Button from '@mui/material/Button';
@@ -20,7 +21,14 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
     let data;
     const [ openModal, setOpenModal ] = useState(true);
     const classes = useStyles();
+    const navigate = useNavigate();
     const legendColors = [ "#0d50af", "#0a27af", "#020a72" ];
+
+    const handleCloseDialog = () => {
+        setOpenModal(false);
+        setOpenDialog(false);
+        navigate('/users');
+    }
 
     if (!_.isEmpty(userData)) {
         data = [
@@ -43,7 +51,7 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
         _.isEmpty(userData) ?
             <Dialog
                 open={openModal}
-                onClose={() => setOpenModal(false)}
+                onClose={handleCloseDialog}
                 fullWidth
                 maxWidth="lg"
             >
@@ -58,7 +66,7 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
                 <DialogActions className={classes.modalActions}>
                     <Button 
                         className={classes.closeButton}
-                        onClick={() => setOpenModal(false)}
+                        onClick={handleCloseDialog}
                     >
                         Zamknij
                     </Button>
@@ -71,7 +79,7 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
         >
             <DialogTitle className={classes.modalTitle}>
                {userData.firstName} {userData.lastName} 
-                <IconButton onClick={() => setOpenDialog(false)}>
+                <IconButton onClick={handleCloseDialog}>
                     <CloseIcon />
                 </IconButton>
             </DialogTitle>
@@ -126,7 +134,7 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
             <DialogActions className={classes.modalActions}>
                 <Button
                     className={classes.closeButton} 
-                    onClick={() => setOpenDialog(false)}
+                    onClick={handleCloseDialog}
                 >
                     Zamknij
                 </Button>
