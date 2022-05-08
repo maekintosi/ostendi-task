@@ -79,7 +79,19 @@ const UsersTable = ({ setOpenDialog, setChosenUser, users }) => {
 UsersTable.propTypes = {
     setOpenDialog: PropTypes.func.isRequired,
     setChosenUser: PropTypes.func.isRequired,
-    users: PropTypes.array.isRequired
+    users: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+            evaluationAverage: PropTypes.number.isRequired,
+            evaluationDetails: PropTypes.shape({
+                supervisor: PropTypes.number.isRequired,
+                me: PropTypes.number.isRequired,
+                coworkers: PropTypes.number.isRequired
+            })
+        })
+    )
 }
 
 export default UsersTable;

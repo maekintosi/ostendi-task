@@ -95,19 +95,19 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
                                 <div 
                                     className={classes.dataLegend__item__circle}
                                     style={{backgroundColor: legendColors[0]}}
-                                /> Moja ocena
+                                /> Moja ocena: {userData.evaluationDetails.me}
                             </li>
                             <li className={classes.dataLegend__item}>
                                 <div 
                                     className={classes.dataLegend__item__circle}
                                     style={{backgroundColor: legendColors[1]}}
-                                /> Ocena przełożonego
+                                /> Ocena przełożonego: {userData.evaluationDetails.supervisor}
                             </li>
                             <li className={classes.dataLegend__item}>
                                 <div 
                                     className={classes.dataLegend__item__circle}
                                     style={{backgroundColor: legendColors[2]}}
-                                /> Ocena współpracowników
+                                /> Ocena współpracowników: {userData.evaluationDetails.coworkers}
                             </li>
                         </ul>
                     </Grid>
@@ -146,7 +146,17 @@ const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
 ChartsModal.propTypes = {
     openDialog: PropTypes.bool.isRequired,
     setOpenDialog: PropTypes.func.isRequired,
-    userData: PropTypes.object.isRequired
+    userData: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        evaluationAverage: PropTypes.number.isRequired,
+        evaluationDetails: PropTypes.shape({
+            supervisor: PropTypes.number.isRequired,
+            me: PropTypes.number.isRequired,
+            coworkers: PropTypes.number.isRequired
+        })
+    })
 };
 
 export default ChartsModal;
