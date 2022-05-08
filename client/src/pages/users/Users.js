@@ -16,8 +16,6 @@ const Users = () => {
     const [ chosenUser, setChosenUser ] = useState(id || 1);
     const { users } = useSelector(state => state.users);
 
-    console.log('here');
-
     useEffect(() => {
         dispatch(getUsers());
     }, [dispatch]);

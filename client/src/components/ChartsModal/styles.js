@@ -15,6 +15,9 @@ export default makeStyles(() => ({
         padding: '0',
         margin: '30px 33px'
     },
+    warningText: {
+        fontSize: '29px'
+    },
     blueCard: {
         color: '#4a4a4a',
         backgroundColor: '#dfeffe',
@@ -46,7 +49,8 @@ export default makeStyles(() => ({
         margin: '0 15px 0 0'
     },
     closeButton: {
-        color: '#1158fb'
+        color: '#1158fb',
+        fontSize: '29px'
     },
     modalActions: {
         padding: '0',

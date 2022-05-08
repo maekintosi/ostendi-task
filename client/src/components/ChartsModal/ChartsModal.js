@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import _ from 'underscore';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -15,16 +16,54 @@ import { PieChart, Pie, Cell } from 'recharts';
 import useStyles from './styles';
 
 export default function ChartsModal({openDialog, setOpenDialog, userData}) {
+    let data;
+    const [ openModal, setOpenModal ] = useState(true);
     const classes = useStyles();
-    const data = [
-        { name: "Moja ocena", value: userData.evaluationDetails.me },
-        { name: "Ocena przełożonego", value: userData.evaluationDetails.supervisor },
-        { name: "Ocena współpracowników", value: userData.evaluationDetails.coworkers }
-    ];
-    const legendColors = ["#0d50af", "#0a27af", "#020a72"];
+    const legendColors = [ "#0d50af", "#0a27af", "#020a72" ];
+
+    if (!_.isEmpty(userData)) {
+        data = [
+            {
+                name: "Moja ocena", 
+                value: userData.evaluationDetails.me
+            },
+            {
+                name: "Ocena przełożonego",
+                value: userData.evaluationDetails.supervisor
+            },
+            {
+                name: "Ocena współpracowników",
+                value: userData.evaluationDetails.coworkers
+            }
+        ];
+    }
 
     return (
-        <Dialog
+        _.isEmpty(userData) ?
+            <Dialog
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+                fullWidth
+                maxWidth="lg"
+            >
+                <DialogTitle className={classes.modalTitle}>
+                    Uwaga!
+                </DialogTitle>
+                <DialogContent className={classes.modalContent}>
+                    <p className={classes.warningText}>
+                        Wskazany rekord nie istnieje w naszej bazie.
+                    </p>
+                </DialogContent>
+                <DialogActions className={classes.modalActions}>
+                    <Button 
+                        className={classes.closeButton}
+                        onClick={() => setOpenModal(false)}
+                    >
+                        Zamknij
+                    </Button>
+                </DialogActions>
+            </Dialog>
+            : <Dialog
             open={openDialog}
             fullWidth
             maxWidth="lg"
