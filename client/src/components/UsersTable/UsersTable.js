@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,7 +13,7 @@ import Button from '@mui/material/Button';
 
 import useStyles from './styles';
 
-export default function UsersTable({ setOpenDialog, setChosenUser, users }) {
+const UsersTable = ({ setOpenDialog, setChosenUser, users }) => {
     const classes = useStyles();
 
     const handleShowDialog = (id) => {
@@ -68,6 +69,14 @@ export default function UsersTable({ setOpenDialog, setChosenUser, users }) {
                     </TableBody>
                 </Table>
             </TableContainer>
-        : <CircularProgress />
+        : <>{'Wczytywanie danych'} <CircularProgress /></>
     )
 }
+
+UsersTable.propTypes = {
+    setOpenDialog: PropTypes.func.isRequired,
+    setChosenUser: PropTypes.func.isRequired,
+    users: PropTypes.array.isRequired
+}
+
+export default UsersTable;

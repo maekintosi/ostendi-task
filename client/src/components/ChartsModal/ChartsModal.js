@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import _ from 'underscore';
 
 import Button from '@mui/material/Button';
@@ -15,7 +16,7 @@ import { PieChart, Pie, Cell } from 'recharts';
 
 import useStyles from './styles';
 
-export default function ChartsModal({openDialog, setOpenDialog, userData}) {
+const ChartsModal = ({openDialog, setOpenDialog, userData}) => {
     let data;
     const [ openModal, setOpenModal ] = useState(true);
     const classes = useStyles();
@@ -133,3 +134,11 @@ export default function ChartsModal({openDialog, setOpenDialog, userData}) {
         </Dialog>
     )
 }
+
+ChartsModal.propTypes = {
+    openDialog: PropTypes.bool.isRequired,
+    setOpenDialog: PropTypes.func.isRequired,
+    userData: PropTypes.object.isRequired
+};
+
+export default ChartsModal;
